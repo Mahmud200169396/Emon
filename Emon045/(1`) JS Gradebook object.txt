@@ -1,0 +1,44 @@
+const gradebook = {
+    students: {},
+
+    addStudent: function(name) {
+        this.students[name] = [];
+    },
+
+    addGrade: function(name, grade) {
+        if (this.students[name]) {
+            this.students[name].push(grade);
+        } else {
+            console.log("Student not found.");
+        }
+    },
+
+    calculateAverageGrade: function(name) {
+        if (this.students[name] && this.students[name].length > 0) {
+            const grades = this.students[name];
+            const sum = grades.reduce((total, grade) => total + grade, 0);
+            return sum / grades.length;
+        } else {
+            return "No grades available for this student.";
+        }
+    },
+
+    findHighestAndLowestGrades: function(name) {
+        if (this.students[name] && this.students[name].length > 0) {
+            const grades = this.students[name];
+            const highest = Math.max(...grades);
+            const lowest = Math.min(...grades);
+            return { highest, lowest };
+        } else {
+            return "No grades available for this student.";
+        }
+    }
+};
+
+gradebook.addStudent("Emon");
+gradebook.addGrade("Emon", 20);
+gradebook.addGrade("Emon", 40);
+gradebook.addGrade("Emon", 60);
+gradebook.addGrade("Emon", 80);
+console.log("Average Grade:", gradebook.calculateAverageGrade("Emon"));
+console.log("Highest and Lowest Grades:", gradebook.findHighestAndLowestGrades("Emon"))

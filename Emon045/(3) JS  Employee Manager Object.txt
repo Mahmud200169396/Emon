@@ -1,0 +1,44 @@
+const employeeManager = {
+    id: null,
+    name: null,
+    position: null,
+    salary: null,
+
+    addEmployee: function(employee) {
+        this.id = employee.id;
+        this.name = employee.name;
+        this.position = employee.position;
+        this.salary = employee.salary;
+    },
+
+    removeEmployee: function() {
+        this.id = null;
+        this.name = null;
+        this.position = null;
+        this.salary = null;
+    },
+
+    getEmployeeDetails: function() {
+        if (this.id !== null) {
+            return {
+                id: this.id,
+                name: this.name,
+                position: this.position,
+                salary: this.salary
+            };
+        } else {
+            return "No employee record found";
+        }
+    },
+
+    getSalary: function() {
+        return this.salary !== null ? this.salary : "No salary data available";
+    }
+};
+
+// Example usage
+employeeManager.addEmployee({ id: 1, name: "Emon", position: "Developer", salary: 100000 });
+console.log(employeeManager.getEmployeeDetails()); // Output: { id: 1, name: "Emon", position: "Developer", salary: 100000 }
+console.log(employeeManager.getSalary());
+employeeManager.removeEmployee();
+console.log(employeeManager.getEmployeeDetails()); 
